@@ -1,5 +1,5 @@
 # open-pvz
-Game Engine inpired in "Plantz Vz Zombiez" action, implemented in C with differents wrappers for other languages.
+Tower Defense Engine inspired by "Plantz Vz Zombiez" style game, implemented in C with differents wrappers for other languages.
 
 ## Use:
 TODO
@@ -7,4 +7,3 @@ TODO
 ## Game Languages:
  * Lua
  * Java (Todo)
- * Python (Todo)
