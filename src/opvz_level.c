@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "opvz_level.h"
@@ -37,4 +38,9 @@ level_new_default(void)
 {
   LevelConfig * config = level_config_new(5, 9, 0);
   return level_new(config);
+}
+
+int hello(int i)
+{
+  return i+2;
 }
