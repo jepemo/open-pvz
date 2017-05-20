@@ -18,7 +18,7 @@ $(OUT_LIB): $(OBJECTS)
 	#ar rcs -o $(IDIR)/$@ $^
 	gcc -Wall -shared -fPIC -o $(IDIR)/$@ $^
 	cp $(IDIR)/$@ bindings/lua
-	gcc -Wall -shared -fPIC -o bindings/lua/libopvz_lua.so  -I/usr/include/lua5.2 -I./src -llua5.1 bindings/lua/libopvz_lua.c
+	gcc -Wall -shared -fPIC -o bindings/lua/libopvz_lua.so  -I/usr/include/lua5.2 -I./src -llua5.1 bindings/lua/libopvz_lua.c ./src/*.c
 
 .PHONY: clean
 clean:

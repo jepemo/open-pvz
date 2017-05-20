@@ -42,5 +42,5 @@ level_new_default(void)
 
 int hello(int i)
 {
-  return i+2;
+  return i+10000;
 }

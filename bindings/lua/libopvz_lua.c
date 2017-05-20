@@ -11,12 +11,7 @@
 //	lua_pushnumber(L,rtrn*rtrn);           /* Push the return */
 //	return 1;                              /* One return value */
 //}
-//static int icube(lua_State *L){                /* Internal name of func */
-//	float rtrn = lua_tonumber(L, -1);      /* Get the single number arg */
-//	printf("Top of cube(), number=%f\n",rtrn);
-//	lua_pushnumber(L,rtrn*rtrn*rtrn);      /* Push the return */
-//	return 1;                              /* One return value */
-//}
+
 
 
 /* Register this file's functions with the
@@ -43,19 +38,37 @@
 //	return 0;
 //}
 
+static int sleep_c(lua_State *L){
+	long secs = lua_tointeger(L, -1);
+	sleep(secs);
+	return 0;                  /* No items returned */
+}
 
-
-static int ihello(lua_State *L){
-  printf("ihello!");
+static int icube(lua_State *L){
 	float rtrn = lua_tonumber(L, -1);
-	lua_pushnumber(L,hello(rtrn));
-  // lua_pushnumber(L,rtrn*rtrn*rtrn);
+	// printf("Top of cube(), number=%f\n",rtrn);
+	lua_pushnumber(L,rtrn*rtrn*rtrn);
 	return 1;
 }
 
-int luaopen_opvzlib(lua_State *L)
+static int ihello(lua_State *L){
+  // printf("ihello!");
+	float rtrn = lua_tonumber(L, -1);
+	lua_pushnumber(L,hello(rtrn));
+  //lua_pushnumber(L,rtrn*rtrn*rtrn);
+	return 1;
+}
+
+static int icreate_new_level_default(lua_State *L) {
+  // lua_push
+  return 1;
+}
+
+
+int luaopen_libopvz_lua(lua_State *L)
 {
-  printf("open!");
 	lua_register(L, "hello", ihello);
+  lua_register(L, "cube",  icube);
+  lua_register(L, "sleep", sleep_c);
 	return 0;
 }

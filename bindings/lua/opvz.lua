@@ -1,8 +1,8 @@
 require("libopvz_lua")
 
-a = hello(2)
-print(a)
+print(cube(5))
+sleep(1)
+print(hello(2))
 
 --require("opvzlib")
 --print(square(1.414213598))
---print(cube(5))
