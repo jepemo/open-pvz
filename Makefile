@@ -1,7 +1,7 @@
 IDIR =./src
 CC=gcc
-CFLAGS=-Wall -I$(IDIR)
-OUT_LIB=opvz.so
+CFLAGS=-Wall -fPIC -I$(IDIR)
+OUT_LIB=libopvz.so
 LDIR =./lib
 LIBS=-lm
 OBJECTS = $(patsubst %.c, %.o, $(wildcard $(IDIR)/*.c))
@@ -15,9 +15,10 @@ all: $(OUT_LIB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUT_LIB): $(OBJECTS)
-	ar rcs -o $(IDIR)/$@ $^
-	# cp $(IDIR)/$@ bindings/lua
-	gcc -Wall -shared -fPIC -o bindings/lua/opvzlib.so  -I/usr/include/lua5.1 -I./src -llua5.1 bindings/lua/opvz_binding.c
+	#ar rcs -o $(IDIR)/$@ $^
+	gcc -Wall -shared -fPIC -o $(IDIR)/$@ $^
+	cp $(IDIR)/$@ bindings/lua
+	gcc -Wall -shared -fPIC -o bindings/lua/libopvz_lua.so  -I/usr/include/lua5.2 -I./src -llua5.1 bindings/lua/libopvz_lua.c
 
 .PHONY: clean
 clean:
