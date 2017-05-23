@@ -1,8 +1,10 @@
+/**
+ *
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "opvz_level.h"
-
 
 LevelConfig *
 level_config_new(size_t rows, size_t cols, short depth)
@@ -40,7 +42,8 @@ level_new_default(void)
   return level_new(config);
 }
 
-int hello(int i)
+void
+level_next_step(Level * level)
 {
-  return i+10000;
+  // All the calculations
 }

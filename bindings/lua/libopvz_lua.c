@@ -51,6 +51,7 @@ static int icube(lua_State *L){
 	return 1;
 }
 
+/*
 static int ihello(lua_State *L){
   // printf("ihello!");
 	float rtrn = lua_tonumber(L, -1);
@@ -58,6 +59,7 @@ static int ihello(lua_State *L){
   //lua_pushnumber(L,rtrn*rtrn*rtrn);
 	return 1;
 }
+*/
 
 static int icreate_new_level_default(lua_State *L) {
   // lua_push
@@ -67,7 +69,7 @@ static int icreate_new_level_default(lua_State *L) {
 
 int luaopen_libopvz_lua(lua_State *L)
 {
-	lua_register(L, "hello", ihello);
+	// lua_register(L, "hello", ihello);
   lua_register(L, "cube",  icube);
   lua_register(L, "sleep", sleep_c);
 	return 0;

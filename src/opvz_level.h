@@ -1,10 +1,8 @@
 /**
  *
- *
  */
-
-#ifndef __OPEN_PVZ_H__
-#define __OPEN_PVZ_H__
+#ifndef __OPVZ_LEVEL_H__
+#define __OPVZ_LEVEL_H__
 
 typedef struct {
   /* Number of map rows */
@@ -29,6 +27,4 @@ LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
 Level * level_new        (LevelConfig *config);
 Level * level_new_default(void);
 
-int hello(int i);
-
-#endif /* __OPEN_PVZ_H__ */
+#endif /* __OPVZ_LEVEL_H__ */
