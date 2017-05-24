@@ -17,19 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "test_utils.h"
-#include "opvz.h"
+
 #include <stdio.h>
 
-void test_simple_creation () {
-  Level *level = level_new_default();
-  level_destroy(level);
-}
+#define START_TEST(NAME) \
+  printf("======================================\n"); \
+  printf("\t   %s  \n", NAME); \
+  printf("======================================\n");
 
-int main (int argc, char **argv) {
-  START_TEST("LEVEL_CREATION")
-  
-  test_simple_creation();
-
-  return 0;
-}
+#define TEST(NAME) \
+  void NAME()

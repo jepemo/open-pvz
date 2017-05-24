@@ -20,6 +20,8 @@
 #ifndef __OPVZ_LEVEL_H__
 #define __OPVZ_LEVEL_H__
 
+#include <stdlib.h>
+
 #define MAX_ENTITIES 512
 
 typedef struct {
@@ -44,5 +46,6 @@ LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
 
 Level * level_new        (LevelConfig *config);
 Level * level_new_default(void);
+void    level_destroy(Level *level);
 
 #endif /* __OPVZ_LEVEL_H__ */
