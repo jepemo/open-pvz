@@ -29,6 +29,9 @@ level_new (LevelConfig *config)
   level->depth = malloc(dimension * sizeof(short));
   memset(level->depth, 0, dimension);
 
+  level->entities = malloc(MAX_ENTITIES * sizeof(short));
+  memset(level->entities, 0, MAX_ENTITIES);
+
   return level;
 }
 

@@ -4,6 +4,8 @@
 #ifndef __OPVZ_LEVEL_H__
 #define __OPVZ_LEVEL_H__
 
+#define MAX_ENTITIES 512
+
 typedef struct {
   /* Number of map rows */
   size_t n_rows;
@@ -17,9 +19,9 @@ typedef struct {
   /* Level configuration*/
   LevelConfig *config;
   /* Surface profundity. Default is 0 */
-  short **depth;
+  short *depth;
   /* Game objects in the level */
-  short ***level_objects;
+  short *entities;
 } Level;
 
 LevelConfig * level_config_new(size_t rows, size_t cols, short depth);

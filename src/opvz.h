@@ -5,6 +5,8 @@
 #define __OPVZ_H__
 
 #include "opvz_entity.h"
+#include "opvz_zombie.h"
+#include "opvz_plant.h"
 #include "opvz_level.h"
 
 #endif /* __OPVZ_H__ */

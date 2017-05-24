@@ -4,6 +4,8 @@
 #ifndef __OPVZ_ENTITY_H__
 #define __OPVZ_ENTITY_H__
 
+#include <stdlib.h>
+
 typedef struct {
   /* Level x position */
   size_t x_pos;
