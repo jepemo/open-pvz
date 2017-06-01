@@ -67,7 +67,18 @@ level_destroy(Level *level)
 }
 
 void
-level_next_step(Level * level)
+level_add_zombie (Level *level, Zombie *zombie, size_t xpos, size_t ypos)
 {
-  // All the calculations
+
+}
+
+void level_add_plant  (Level *level, Plant *plant, size_t xpos, size_t ypos)
+{
+
+}
+
+Level *
+level_step(Level *level)
+{
+  return level;
 }

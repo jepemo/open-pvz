@@ -21,6 +21,8 @@
 #define __OPVZ_LEVEL_H__
 
 #include <stdlib.h>
+#include "opvz_plant.h"
+#include "opvz_zombie.h"
 
 #define MAX_ENTITIES 512
 
@@ -46,6 +48,11 @@ LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
 
 Level * level_new        (LevelConfig *config);
 Level * level_new_default(void);
-void    level_destroy(Level *level);
+void    level_destroy    (Level *level);
+
+void    level_add_zombie (Level *level, Zombie *zombie, size_t xpos, size_t ypos);
+void    level_add_plant  (Level *level, Plant *plant, size_t xpos, size_t ypos);
+
+Level * level_step(Level *level);
 
 #endif /* __OPVZ_LEVEL_H__ */
