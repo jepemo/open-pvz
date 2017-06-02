@@ -63,7 +63,8 @@ level_new_default(void)
 void
 level_destroy(Level *level)
 {
-  // Clean all data
+  free(level->depth);
+  free(level->entities);
 }
 
 void

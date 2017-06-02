@@ -24,7 +24,7 @@
 #include "opvz_plant.h"
 #include "opvz_zombie.h"
 
-#define MAX_ENTITIES 512
+#define MAX_ENTITIES 1024
 
 typedef struct {
   /* Number of map rows */
