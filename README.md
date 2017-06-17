@@ -6,13 +6,17 @@ TODO
 
 ## Installation
 ### Linux (Ubuntu)
+
 Install compiler and lua headers
+
 ```bash
 apt-get install gcc
 ```
 ### MacOS
 Install [brew](https://brew.sh/) 
+
 Install lua: 
+
 ```bash
 brew install lua
 ```

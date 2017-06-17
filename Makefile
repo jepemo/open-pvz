@@ -15,7 +15,7 @@ ifeq ($(UNAME), Linux)
 endif
 ifeq ($(UNAME), Darwin)
 	LUA_HEADERS=/usr/local/include/lua5.2
-	LUA_FLAGS=-DLUA_USE_LINUX
+	LUA_FLAGS=-undefined dynamic_lookup
 endif
 
 A=$(wildcard $(IDIR)/*.c)
