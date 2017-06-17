@@ -1,3 +1,4 @@
+UNAME := $(shell uname)
 IDIR =./src
 CC=gcc
 CFLAGS=-Wall -fPIC -I$(IDIR)
@@ -7,6 +8,15 @@ LIBS=-lm
 OBJECTS = $(patsubst %.c, %.o, $(wildcard $(IDIR)/*.c))
 BIN_TESTS = $(patsubst %.c, %.bin, $(wildcard tests/*.c))
 HEADERS = $(wildcard *.h)
+
+ifeq ($(UNAME), Linux)
+	LUA_HEADERS=/usr/include/lua5.2
+	LUA_FLAGS=-llua5.1
+endif
+ifeq ($(UNAME), Darwin)
+	LUA_HEADERS=/usr/local/include/lua5.2
+	LUA_FLAGS=-DLUA_USE_LINUX
+endif
 
 A=$(wildcard $(IDIR)/*.c)
 
@@ -20,9 +30,10 @@ all: $(OUT_LIB)
 	./$@
 
 $(OUT_LIB): $(OBJECTS)
+	@echo "OS is $(UNAME)"
 	gcc -Wall -shared -fPIC -o $(IDIR)/$@ $^
 	cp $(IDIR)/$@ bindings/lua
-	gcc -Wall -shared -fPIC -o bindings/lua/libopvz_lua.so  -I/usr/include/lua5.2 -I./src -llua5.1 bindings/lua/libopvz_lua.c ./src/*.c
+	gcc -Wall -shared -fPIC -o bindings/lua/libopvz_lua.so  -I$(LUA_HEADERS) -I./src $(LUA_FLAGS) bindings/lua/libopvz_lua.c ./src/*.c	
 
 .PHONY: clean test
 test: clean all $(BIN_TESTS)
