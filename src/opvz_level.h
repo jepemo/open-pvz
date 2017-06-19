@@ -42,8 +42,7 @@ typedef struct {
   /* Surface profundity. Default is 0 */
   short *depth;
   /* Game objects in the level */
-  short *entities;
-  map_t *tentities;
+  map_t *entities;
 } Level;
 
 LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
