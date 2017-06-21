@@ -28,6 +28,11 @@ typedef struct {
   /* Level y position */
   size_t y_pos;
 
+  /* unique identifier */
+  char* id;
 } Entity;
+
+
+char* entity_new_id(void);
 
 #endif /* __OPVZ_ENTITY_H__ */

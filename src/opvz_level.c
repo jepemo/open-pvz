@@ -67,19 +67,26 @@ void
 level_destroy(Level *level)
 {
   free(level->depth);
-  // free(level->entities);
   hashmap_free(level->entities);
 }
 
 void
 level_add_zombie (Level *level, Zombie *zombie, size_t xpos, size_t ypos)
 {
+  zombie->entity->x_pos = xpos;
+  zombie->entity->y_pos = ypos;
+  zombie->entity->id = entity_new_id();
 
+  hashmap_put(level->entities, zombie->entity->id, zombie);
 }
 
 void level_add_plant  (Level *level, Plant *plant, size_t xpos, size_t ypos)
 {
+  plant->entity->x_pos = xpos;
+  plant->entity->y_pos = ypos;
+  plant->entity->id = entity_new_id();
 
+  hashmap_put(level->entities, plant->entity->id, plant);
 }
 
 Level *
