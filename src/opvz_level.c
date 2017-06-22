@@ -44,6 +44,7 @@ level_new (LevelConfig *config)
   level->depth = malloc(dimension * sizeof(short));
   memset(level->depth, 0, dimension);
 
+  level->last_id = 1;
   /*
   level->entities = malloc(MAX_ENTITIES * sizeof(short));
   memset(level->entities, 0, MAX_ENTITIES);
@@ -93,4 +94,21 @@ Level *
 level_step(Level *level)
 {
   return level;
+}
+
+Entity**
+get_entities(Level * level, int x, int y)
+{
+  return NULL;
+}
+
+void
+level_print_debug(Level *level)
+{
+  for(int y=0; y < level->config->n_rows; ++y) {
+    for(int x=0; x < level->config->n_cols; ++x) {
+      Entity** entities_position = get_entities(level, x, y);
+      //printf("");
+    }
+  }
 }

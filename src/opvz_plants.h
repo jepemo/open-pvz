@@ -17,24 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __OPVZ_ENTITY_H__
-#define __OPVZ_ENTITY_H__
+#ifndef __OPVZ_PLANT_H__
+#define __OPVZ_PLANT_H__
 
-#include <stdlib.h>
+#include "opvz_plant.h"
+                                   /* strength */
+#define PLANT_SUNFLOWER  plant_new(     5       )
+#define PLANT_PEASHOOTER plant_new(     5       )
+#define PLANT_CHERRYBOMB plant_new(     999     )
+#define PLANT_WALLNUT    plant_new(     15      )
 
-typedef struct {
-  /* Level x position */
-  size_t x_pos;
-  /* Level y position */
-  size_t y_pos;
-
-  /* unique identifier */
-  char* id;
-
-  char repr;
-} Entity;
-
-
-char* entity_new_id(void);
-
-#endif /* __OPVZ_ENTITY_H__ */
+#endif /* __OPVZ_PLANT_H__ */

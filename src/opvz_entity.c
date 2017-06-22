@@ -18,9 +18,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "opvz_entity.h"
+#include <stdio.h>
+
+static int last_id = 1;
 
 char*
 entity_new_id(void)
 {
-  return "";
+  char *new_id = (char *) malloc(256);
+
+  sprintf(new_id, "%d", last_id);
+
+  last_id++;
+
+  return new_id;
 }

@@ -18,3 +18,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "opvz_plant.h"
+
+Plant *
+plant_new(int strength)
+{
+  Plant* plant = malloc(sizeof(Plant));
+
+  plant->strength = strength;
+
+  plant->entity = malloc(sizeof(Entity));
+  plant->entity->repr = 'P';
+
+  return plant;
+}

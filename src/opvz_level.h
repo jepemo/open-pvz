@@ -21,6 +21,7 @@
 #define __OPVZ_LEVEL_H__
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "hashmap.h"
 #include "opvz_plant.h"
 #include "opvz_zombie.h"
@@ -43,6 +44,8 @@ typedef struct {
   short *depth;
   /* Game objects in the level */
   map_t *entities;
+
+  long last_id;
 } Level;
 
 LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
@@ -50,10 +53,12 @@ LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
 Level * level_new        (LevelConfig *config);
 Level * level_new_default(void);
 void    level_destroy    (Level *level);
+void    level_print_debug(Level *level);
 
 void    level_add_zombie (Level *level, Zombie *zombie, size_t xpos, size_t ypos);
 void    level_add_plant  (Level *level, Plant *plant, size_t xpos, size_t ypos);
 
-Level * level_step(Level *level);
+Level * level_step       (Level *level);
+bool    level_all_dead_zombies (Level *level);
 
 #endif /* __OPVZ_LEVEL_H__ */

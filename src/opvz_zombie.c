@@ -18,3 +18,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "opvz_zombie.h"
+
+Zombie* zombie_new(int strength, int hit, int speed)
+{
+  Zombie* zombie = malloc(sizeof(Zombie));
+
+  zombie->strength = strength;
+  zombie->hit = hit;
+  zombie->speed = speed;
+
+  zombie->entity = malloc(sizeof(Entity));
+  zombie->entity->repr = 'Z';
+
+  return zombie;
+}

@@ -25,6 +25,12 @@
 typedef struct {
   /** */
   Entity* entity;
+
+  int strength;
+  int speed;
+  int hit;
 } Zombie;
+
+Zombie* zombie_new(int strength, int hit, int speed);
 
 #endif /* __OPVZ_ZOMBIE_H__ */

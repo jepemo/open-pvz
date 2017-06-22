@@ -17,24 +17,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __OPVZ_ENTITY_H__
-#define __OPVZ_ENTITY_H__
 
-#include <stdlib.h>
+ #include "opvz_zombie.h"
 
-typedef struct {
-  /* Level x position */
-  size_t x_pos;
-  /* Level y position */
-  size_t y_pos;
-
-  /* unique identifier */
-  char* id;
-
-  char repr;
-} Entity;
-
-
-char* entity_new_id(void);
-
-#endif /* __OPVZ_ENTITY_H__ */
+                                   /* strength,  hit,  speed */
+ #define ZOMBIE_REGULAR zombie_new(     5,        1,     1    )
