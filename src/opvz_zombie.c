@@ -28,7 +28,7 @@ Zombie* zombie_new(int strength, int hit, int speed)
   zombie->speed = speed;
 
   zombie->entity = malloc(sizeof(Entity));
-  zombie->entity->repr = 'Z';
+  zombie->entity->repr = "Z()";
 
   return zombie;
 }

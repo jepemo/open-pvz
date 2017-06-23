@@ -27,7 +27,7 @@ plant_new(int strength)
   plant->strength = strength;
 
   plant->entity = malloc(sizeof(Entity));
-  plant->entity->repr = 'P';
+  plant->entity->repr = "P()";
 
   return plant;
 }

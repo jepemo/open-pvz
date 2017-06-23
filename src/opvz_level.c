@@ -96,10 +96,32 @@ level_step(Level *level)
   return level;
 }
 
-Entity**
-get_entities(Level * level, int x, int y)
+
+Entity*
+get_entities_by_pos(Level * level, int x, int y)
 {
-  return NULL;
+  int i;
+
+	/* Cast the hashmap */
+	map_t* m = (map_t*) level->entities;
+
+	/* On empty hashmap, return immediately */
+	if (hashmap_length(m) <= 0)
+		return NULL;
+
+	/* Linear probing */
+	for(i = 0; i< m->table_size; i++) {
+		if(m->data[i].in_use != 0) {
+			any_t data = (any_t) (m->data[i].data);
+
+      Entity* entity = data->entity;
+      if (entity->x == x && entity->y == y) {
+        printf("OK");
+      }
+		}
+  }
+
+	return NULL;
 }
 
 void
@@ -107,7 +129,7 @@ level_print_debug(Level *level)
 {
   for(int y=0; y < level->config->n_rows; ++y) {
     for(int x=0; x < level->config->n_cols; ++x) {
-      Entity** entities_position = get_entities(level, x, y);
+      Entity* entities = get_entities_by_pos(level, x, y);
       //printf("");
     }
   }

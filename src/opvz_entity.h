@@ -23,15 +23,28 @@
 #include <stdlib.h>
 
 typedef struct {
+  /* Type */
+  short type;
+  /* unique identifier */
+  long id;
+  /** Console representation */
+  char* repr;
+  /* Pointer to a specialized entity */
+  void* data;
+
+  /** ---- Common atributes --------- */
+
   /* Level x position */
   size_t x_pos;
   /* Level y position */
   size_t y_pos;
+  /* Healh */
+  int health;
+  /* Armor */
+  int armor;
+  /* hit */
+  int hit;
 
-  /* unique identifier */
-  char* id;
-
-  char repr;
 } Entity;
 
 
