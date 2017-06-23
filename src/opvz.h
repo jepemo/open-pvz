@@ -22,9 +22,9 @@
 
 #include "opvz_entity.h"
 #include "opvz_zombie.h"
-#include "opvz_zombies.h"
+#include "opvz_zombie_types.h"
 #include "opvz_plant.h"
-#include "opvz_plants.h"
+#include "opvz_plant_types.h"
 #include "opvz_level.h"
 
 #endif /* __OPVZ_H__ */
