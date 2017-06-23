@@ -19,16 +19,22 @@
  */
 #include "opvz_zombie.h"
 
-Zombie* zombie_new(int strength, int hit, int speed)
+Entity*
+zombie_new(int type, int strength, int hit, int speed)
 {
+  Entity* entity = malloc(sizeof(Entity));
   Zombie* zombie = malloc(sizeof(Zombie));
 
-  zombie->strength = strength;
-  zombie->hit = hit;
+  entity->type = type;
+  entity->data = zombie;
+
+  entity->health = health;
+  entity->armor = armor;
+  entity->hit = hit;
+
   zombie->speed = speed;
 
-  zombie->entity = malloc(sizeof(Entity));
-  zombie->entity->repr = "Z()";
+  sprintf(zombie->entity->repr, "Z(%d)", type);
 
-  return zombie;
+  return entity;
 }

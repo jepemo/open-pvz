@@ -24,13 +24,8 @@
 #include "opvz_entity.h"
 
 typedef struct {
-  /** */
-  Entity* entity;
-
-  int strength;
-
 } Plant;
 
-Plant * plant_new(int strength);
+Entity * plant_new(int strength);
 
 #endif /* __OPVZ_PLANT_H__ */

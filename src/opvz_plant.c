@@ -19,15 +19,17 @@
  */
 #include "opvz_plant.h"
 
-Plant *
-plant_new(int strength)
+Entity *
+plant_new(int type, int health, int armor, int hit)
 {
+  Entity * entity = malloc(sizeof(Entity));
   Plant* plant = malloc(sizeof(Plant));
 
-  plant->strength = strength;
+  entity->strength = health;
+  entity->armor = armor;
+  entity->hit = hit;
 
-  plant->entity = malloc(sizeof(Entity));
-  plant->entity->repr = "P()";
+  sprintf(plant->entity->repr, "P(%d)", type);
 
-  return plant;
+  return entity;
 }
