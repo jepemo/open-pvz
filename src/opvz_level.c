@@ -72,22 +72,13 @@ level_destroy(Level *level)
 }
 
 void
-level_add_zombie (Level *level, Zombie *zombie, size_t xpos, size_t ypos)
+level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos)
 {
-  zombie->entity->x_pos = xpos;
-  zombie->entity->y_pos = ypos;
-  zombie->entity->id = entity_new_id();
+  entity->x_pos = xpos;
+  entity->y_pos = ypos;
+  entity->id = entity_new_id();
 
-  hashmap_put(level->entities, zombie->entity->id, zombie);
-}
-
-void level_add_plant  (Level *level, Plant *plant, size_t xpos, size_t ypos)
-{
-  plant->entity->x_pos = xpos;
-  plant->entity->y_pos = ypos;
-  plant->entity->id = entity_new_id();
-
-  hashmap_put(level->entities, plant->entity->id, plant);
+  hashmap_put(level->entities, entity->id, entity);
 }
 
 Level *
@@ -100,16 +91,14 @@ level_step(Level *level)
 Entity*
 get_entities_by_pos(Level * level, int x, int y)
 {
+  /*
   int i;
 
-	/* Cast the hashmap */
 	map_t* m = (map_t*) level->entities;
 
-	/* On empty hashmap, return immediately */
 	if (hashmap_length(m) <= 0)
 		return NULL;
 
-	/* Linear probing */
 	for(i = 0; i< m->table_size; i++) {
 		if(m->data[i].in_use != 0) {
 			any_t data = (any_t) (m->data[i].data);
@@ -120,6 +109,7 @@ get_entities_by_pos(Level * level, int x, int y)
       }
 		}
   }
+  */
 
 	return NULL;
 }

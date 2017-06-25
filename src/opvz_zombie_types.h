@@ -20,5 +20,5 @@
 
  #include "opvz_zombie.h"
 
-                                   /* strength,  hit,  speed */
- #define ZOMBIE_REGULAR zombie_new(     5,        1,     1    )
+                                   /* type, health, armor, hit,  speed */
+ #define ZOMBIE_REGULAR zombie_new(    0,     5,     5,     2,     2    )

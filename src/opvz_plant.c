@@ -25,11 +25,14 @@ plant_new(int type, int health, int armor, int hit)
   Entity * entity = malloc(sizeof(Entity));
   Plant* plant = malloc(sizeof(Plant));
 
-  entity->strength = health;
+  entity->type = type;
+  entity->data = plant;
+
+  entity->health = health;
   entity->armor = armor;
   entity->hit = hit;
 
-  sprintf(plant->entity->repr, "P(%d)", type);
+  sprintf(entity->repr, "P(%d)", type);
 
   return entity;
 }

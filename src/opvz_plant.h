@@ -26,6 +26,6 @@
 typedef struct {
 } Plant;
 
-Entity * plant_new(int strength);
+Entity * plant_new(int type, int health, int armor, int hit);
 
 #endif /* __OPVZ_PLANT_H__ */

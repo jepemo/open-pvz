@@ -21,10 +21,10 @@
 #define __OPVZ_PLANT_H__
 
 #include "opvz_plant.h"
-                                   /* strength */
-#define PLANT_SUNFLOWER  plant_new(     5       )
-#define PLANT_PEASHOOTER plant_new(     5       )
-#define PLANT_CHERRYBOMB plant_new(     999     )
-#define PLANT_WALLNUT    plant_new(     15      )
+                                   /* type,  health, armor, hit */
+#define PLANT_SUNFLOWER  plant_new(    0,      5,     5,     0)
+#define PLANT_PEASHOOTER plant_new(    1,      5,     5,     1)
+#define PLANT_CHERRYBOMB plant_new(    2,      999,   999,   60)
+#define PLANT_WALLNUT    plant_new(    3,      15,    50,    0)
 
 #endif /* __OPVZ_PLANT_H__ */
