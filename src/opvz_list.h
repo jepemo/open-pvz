@@ -29,12 +29,13 @@ typedef struct _node {
 
 typedef struct {		
 	node *first;
+	node *last;
 	int n_elements;
 } List;
 
 List* list_create  (void);
 void  list_add_elem(List* list, int ident, void *elem);
 void  list_rem_elem(List* list, int ident);
-void  list_clear   (List* list);
+void  list_free    (List* list);
 
 #endif /* __OPVZ_LIST_H__ */

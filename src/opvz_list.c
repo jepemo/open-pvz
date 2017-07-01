@@ -21,23 +21,61 @@
 List * 
 list_create  (void)
 {
-	return NULL;
+	List *list = malloc(sizeof(struct List));
+	
+	list->first = NULL;
+	list->last  = NULL;
+	list->num_elements = 0;
+	
+	return list;
 }
 
 void  
 list_add_elem(List* list, int ident, void *elem)
 {
+	if (list == null)
+		return;
+		
+	node *root = malloc(sizeof(struct node));
 	
+	root->ident = ident;
+	root->data = elem;
+	
+	if (list->num_elements == 0) {
+		list->first = root;		
+	}
+	else {
+		list->last->next = root;		
+	}
+	
+	list->last = root;
+	list->num_elements++;
 }
 
+// Seeing: https://codereview.stackexchange.com/questions/30536/simple-linked-list-implementation
 void  
 list_rem_elem(List* list, int ident)
 {
-	
+	if (list == null)
+		return;
+	if (list->num_elements == 0)
+		return;
+		
+	node *ptr = list->first;
+	while (ptr != list->last) {
+		if (ptr->ident == ident) {
+			
+			break;
+		}
+		
+		ptr = ptr->next;
+	}	
+		
+	list->num_elements--;
 }
 
 void  
-list_clear (List* list)
+list_free (List* list)
 {
 	
 }
