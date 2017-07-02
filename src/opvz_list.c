@@ -42,10 +42,12 @@ list_add_elem(List* list, int ident, void *elem)
 	root->data = elem;
 	
 	if (list->num_elements == 0) {
-		list->first = root;		
+		list->first = root;	
+		root->prev = NULL;	
 	}
 	else {
-		list->last->next = root;		
+		list->last->next = root;	
+		root->prev = list->last;	
 	}
 	
 	list->last = root;
@@ -77,5 +79,17 @@ list_rem_elem(List* list, int ident)
 void  
 list_free (List* list)
 {
+	if (list == null)
+		return;
+		
+	// Iterate & free every element of the list
+	if (list->num_elements > 0) {
+		node *ptr = list->first;
+		while (ptr->next == NULL) {
+			
+		}
+	}
 	
+	// Free the list
+	free(list);
 }

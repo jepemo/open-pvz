@@ -21,9 +21,11 @@
 #ifndef __OPVZ_LIST_H__
 #define __OPVZ_LIST_H__
 
+/** Node of a double linked list */
 typedef struct _node {
   int ident;
   void *data;
+  struct _node *prev;
   struct _node *next;
 } node;
 
