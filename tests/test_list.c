@@ -17,15 +17,46 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __OPVZ_H__
-#define __OPVZ_H__
 
-#include "opvz_entity.h"
-#include "opvz_zombie.h"
-#include "opvz_zombie_types.h"
-#include "opvz_plant.h"
-#include "opvz_plant_types.h"
-#include "opvz_level.h"
-#include "opvz_list.h"
+#include <stdio.h> 
+#include "test_utils.h"
+#include "opvz.h"
 
-#endif /* __OPVZ_H__ */
+void printList(List *l1)
+{
+  int i=0;
+  node* ptr = l1->first;
+  while(ptr != NULL) {
+	  printf("%d - %d - %s\n", i, ptr->ident, (char*)ptr->data);
+	  ptr = ptr->next;
+	  i++;
+  }
+}
+
+void list0 () {
+  List * l1 = list_create();
+  
+  char *data = "0123456789";
+  
+  list_add_elem(l1, 0, data);
+  list_add_elem(l1, 1, data);
+  list_add_elem(l1, 2, data);
+  list_add_elem(l1, 3, data);
+  list_add_elem(l1, 4, data);
+  
+  printList(l1);
+  
+  list_rem_elem(l1, 2);
+  
+  printList(l1);
+  
+  list_free(l1);
+}
+
+int main (int argc, char **argv) {
+  START_TEST("LISTS")
+
+  list0();
+
+  return 0;
+}
