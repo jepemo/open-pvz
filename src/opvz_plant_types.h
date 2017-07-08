@@ -17,8 +17,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __OPVZ_PLANT_H__
-#define __OPVZ_PLANT_H__
+#ifndef __OPVZ_PLANT_TYPES_H__
+#define __OPVZ_PLANT_TYPES_H__
 
 #include "opvz_plant.h"
                                    /* type,  health, armor, hit */
@@ -27,4 +27,4 @@
 #define PLANT_CHERRYBOMB plant_new(    2,      999,   999,   60)
 #define PLANT_WALLNUT    plant_new(    3,      15,    50,    0)
 
-#endif /* __OPVZ_PLANT_H__ */
+#endif /* __OPVZ_PLANT_TYPES_H__ */

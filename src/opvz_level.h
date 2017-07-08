@@ -22,7 +22,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include "hashmap.h"
+#include "opvz_list.h"
 #include "opvz_plant.h"
 #include "opvz_zombie.h"
 
@@ -43,7 +43,7 @@ typedef struct {
   /* Surface profundity. Default is 0 */
   short *depth;
   /* Game objects in the level */
-  map_t *entities;
+  List *entities;
 
   long last_id;
 } Level;

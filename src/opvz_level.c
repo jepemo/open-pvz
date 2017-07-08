@@ -45,11 +45,8 @@ level_new (LevelConfig *config)
   memset(level->depth, 0, dimension);
 
   level->last_id = 1;
-  /*
-  level->entities = malloc(MAX_ENTITIES * sizeof(short));
-  memset(level->entities, 0, MAX_ENTITIES);
-  */
-  level->entities = hashmap_new();
+
+  level->entities = list_create();
 
   return level;
 }
@@ -68,7 +65,7 @@ void
 level_destroy(Level *level)
 {
   free(level->depth);
-  hashmap_free(level->entities);
+  list_free(level->entities);
 }
 
 void
@@ -78,7 +75,7 @@ level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos)
   entity->y_pos = ypos;
   entity->id = entity_new_id();
 
-  hashmap_put(level->entities, entity->id, entity);
+  list_add_elem(level->entities, entity->id, entity);
 }
 
 Level *
@@ -88,39 +85,50 @@ level_step(Level *level)
 }
 
 
-Entity*
+List*
 get_entities_by_pos(Level * level, int x, int y)
 {
-  /*
-  int i;
-
-	map_t* m = (map_t*) level->entities;
-
-	if (hashmap_length(m) <= 0)
-		return NULL;
-
-	for(i = 0; i< m->table_size; i++) {
-		if(m->data[i].in_use != 0) {
-			any_t data = (any_t) (m->data[i].data);
-
-      Entity* entity = data->entity;
-      if (entity->x == x && entity->y == y) {
-        printf("OK");
+  List * result = list_create();
+    
+  if (level->entities == NULL || level->entities->num_elements == 0)
+	return result;
+	
+  node* ptr = level->entities->first;
+  while (ptr != NULL) {
+      Entity * entity = ((Entity*) ptr->data);
+      if (entity->x_pos == x && entity->y_pos == y) {
+          list_add_elem(result, entity->id, entity);
       }
-		}
+      ptr = ptr->next;
   }
-  */
+	
+  return result;	
+}
 
-	return NULL;
+bool    
+level_all_dead_zombies (Level *level)
+{
+    return false;    
 }
 
 void
 level_print_debug(Level *level)
 {
+  node *ptr = NULL;
+  
   for(int y=0; y < level->config->n_rows; ++y) {
     for(int x=0; x < level->config->n_cols; ++x) {
-      Entity* entities = get_entities_by_pos(level, x, y);
-      //printf("");
+      List* entities = get_entities_by_pos(level, x, y);
+      
+      if (entities->num_elements > 0) {
+          ptr = entities->first;
+          while (ptr != NULL) {
+              Entity * entity = ((Entity*) ptr->data);
+              printf("[%d] ", entity->type);
+          }
+      }      
     }
+    
+    printf("\n");
   }
 }

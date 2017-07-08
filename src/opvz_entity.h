@@ -48,6 +48,6 @@ typedef struct {
 } Entity;
 
 
-char* entity_new_id(void);
+long entity_new_id(void);
 
 #endif /* __OPVZ_ENTITY_H__ */

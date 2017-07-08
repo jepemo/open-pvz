@@ -20,16 +20,17 @@
 #include "opvz_entity.h"
 #include <stdio.h>
 
-static int last_id = 1;
+static long last_id = 1;
 
-char*
+long
 entity_new_id(void)
 {
-  char *new_id = (char *) malloc(256);
+  //char *new_id = (char *) malloc(256);
 
-  sprintf(new_id, "%d", last_id);
+  //sprintf(new_id, "%d", last_id);
 
-  last_id++;
+  //last_id++;
+  return last_id++;
 
-  return new_id;
+  //return new_id;
 }

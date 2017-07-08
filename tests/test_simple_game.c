@@ -17,31 +17,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#include <stdio.h> 
 #include "test_utils.h"
 #include "opvz.h"
-#include <stdio.h>
 
 void level_init (Level *level)
 {
   // plants
-  level_add_plant(level, PLANT_SUNFLOWER, 0, 0);
-  level_add_plant(level, PLANT_SUNFLOWER, 0, 1);
-  level_add_plant(level, PLANT_SUNFLOWER, 0, 2);
-  level_add_plant(level, PLANT_SUNFLOWER, 0, 3);
-  level_add_plant(level, PLANT_SUNFLOWER, 0, 4);
+  level_add_entity(level, PLANT_SUNFLOWER, 0, 0);
+  level_add_entity(level, PLANT_SUNFLOWER, 0, 1);
+  level_add_entity(level, PLANT_SUNFLOWER, 0, 2);
+  level_add_entity(level, PLANT_SUNFLOWER, 0, 3);
+  level_add_entity(level, PLANT_SUNFLOWER, 0, 4);
 
-  level_add_plant(level, PLANT_PEASHOOTER, 1, 0);
-  level_add_plant(level, PLANT_PEASHOOTER, 2, 1);
-  level_add_plant(level, PLANT_PEASHOOTER, 3, 2);
-  level_add_plant(level, PLANT_PEASHOOTER, 4, 3);
-  level_add_plant(level, PLANT_PEASHOOTER, 5, 4);
+  level_add_entity(level, PLANT_PEASHOOTER, 1, 0);
+  level_add_entity(level, PLANT_PEASHOOTER, 2, 1);
+  level_add_entity(level, PLANT_PEASHOOTER, 3, 2);
+  level_add_entity(level, PLANT_PEASHOOTER, 4, 3);
+  level_add_entity(level, PLANT_PEASHOOTER, 5, 4);
 
   // Zombies
-  level_add_zombie(level, ZOMBIE_REGULAR, 8, 0)
-  level_add_zombie(level, ZOMBIE_REGULAR, 8, 1)
-  level_add_zombie(level, ZOMBIE_REGULAR, 8, 2)
-  level_add_zombie(level, ZOMBIE_REGULAR, 8, 3)
-  level_add_zombie(level, ZOMBIE_REGULAR, 8, 4)
+  level_add_entity(level, ZOMBIE_REGULAR, 8, 0);
+  level_add_entity(level, ZOMBIE_REGULAR, 8, 1);
+  level_add_entity(level, ZOMBIE_REGULAR, 8, 2);
+  level_add_entity(level, ZOMBIE_REGULAR, 8, 3);
+  level_add_entity(level, ZOMBIE_REGULAR, 8, 4);
 }
 
 void simple_game () {
