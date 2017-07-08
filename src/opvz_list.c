@@ -18,10 +18,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdlib.h>
+#include "opvz_list.h"
+
 List * 
-list_create  (void)
+list_create(void)
 {
-	List *list = malloc(sizeof(struct List));
+	List *list = malloc(sizeof(List));
 	
 	list->first = NULL;
 	list->last  = NULL;
@@ -33,10 +36,10 @@ list_create  (void)
 void  
 list_add_elem(List* list, int ident, void *elem)
 {
-	if (list == null)
+	if (list == NULL)
 		return;
 		
-	node *root = malloc(sizeof(struct node));
+	node *root = malloc(sizeof(node));
 	
 	root->ident = ident;
 	root->data = elem;
@@ -58,7 +61,7 @@ list_add_elem(List* list, int ident, void *elem)
 void  
 list_rem_elem(List* list, int ident)
 {
-	if (list == null)
+	if (list == NULL)
 		return;
 	if (list->num_elements == 0)
 		return;
@@ -96,7 +99,7 @@ list_rem_elem(List* list, int ident)
 void  
 list_free (List* list)
 {
-	if (list == null)
+	if (list == NULL)
 		return;
 		
 	// Iterate & free every element of the list

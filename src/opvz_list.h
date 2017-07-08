@@ -32,7 +32,7 @@ typedef struct _node {
 typedef struct {		
 	node *first;
 	node *last;
-	int n_elements;
+	int num_elements;
 } List;
 
 List* list_create  (void);
