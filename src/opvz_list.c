@@ -64,8 +64,25 @@ list_rem_elem(List* list, int ident)
 		return;
 		
 	node *ptr = list->first;
-	while (ptr != list->last) {
+	while (ptr != NULL) {
 		if (ptr->ident == ident) {
+			
+			// First element
+			if (ptr->prev == NULL) {
+				ptr->next->prev = NULL;
+				list->first = ptr->next;
+			}
+			// Last element
+			else if (ptr->next == NULL) {
+				ptr->prev->next = NULL;
+				list->last = ptr->prev;
+			}
+			else {
+				ptr->prev->next = ptr->next;
+				ptr->next->prev = ptr->prev;
+			}
+			
+			free(ptr);
 			
 			break;
 		}
@@ -85,8 +102,13 @@ list_free (List* list)
 	// Iterate & free every element of the list
 	if (list->num_elements > 0) {
 		node *ptr = list->first;
-		while (ptr->next == NULL) {
+		node *aux = NULL;
+		while (ptr != NULL) {
+			aux = ptr->next;
 			
+			free(ptr);
+			
+			ptr = aux;
 		}
 	}
 	
