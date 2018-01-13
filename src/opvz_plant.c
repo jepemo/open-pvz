@@ -27,6 +27,7 @@ plant_new(int type, int health, int armor, int hit)
   Entity * entity = malloc(sizeof(Entity));
   Plant* plant = malloc(sizeof(Plant));
 
+  entity->clazz = PLANT;
   entity->type = type;
   entity->data = plant;
 

@@ -74,13 +74,14 @@ level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos)
   entity->x_pos = xpos;
   entity->y_pos = ypos;
   entity->id = entity_new_id();
-  
+
   list_add_elem(level->entities, entity->id, entity);
 }
 
 Level *
 level_step(Level *level)
 {
+  /** GAME LOGIC */
   return level;
 }
 
@@ -91,7 +92,7 @@ get_entities_by_pos(Level * level, int x, int y)
   List * result = list_create();
 
   if (level->entities == NULL || level->entities->num_elements == 0)
-	return result;
+	    return result;
 
   node* ptr = level->entities->first;
   while (ptr != NULL) {
@@ -108,7 +109,20 @@ get_entities_by_pos(Level * level, int x, int y)
 bool
 level_all_dead_zombies (Level *level)
 {
-    return false;
+  if (level->entities == NULL || level->entities->num_elements == 0)
+    return true;
+
+  bool exists = false;
+  node* ptr = level->entities->first;
+  while (ptr != NULL) {
+      Entity * entity = ((Entity*) ptr->data);
+      if (entity->clazz == ZOMBIE) {
+        exists = true;
+        break;
+      }
+  }
+
+  return exists;
 }
 
 void

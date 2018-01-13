@@ -22,7 +22,12 @@
 
 #include <stdlib.h>
 
+#define PLANT 0
+#define ZOMBIE 1
+
 typedef struct {
+  /* class (0 plant, 1 zombie) */
+  short clazz;
   /* Type */
   short type;
   /* unique identifier */

@@ -27,6 +27,7 @@ zombie_new(int type, int health, int armor, int hit, int speed)
   Entity* entity = malloc(sizeof(Entity));
   Zombie* zombie = malloc(sizeof(Zombie));
 
+  entity->clazz = ZOMBIE;
   entity->type = type;
   entity->data = zombie;
 
