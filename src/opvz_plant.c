@@ -17,8 +17,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include <stdio.h> 
+
+#include <stdio.h>
 #include "opvz_plant.h"
 
 Entity *
@@ -33,6 +33,7 @@ plant_new(int type, int health, int armor, int hit)
   entity->health = health;
   entity->armor = armor;
   entity->hit = hit;
+  entity->repr = malloc(sizeof(char) * 32);
 
   sprintf(entity->repr, "P(%d)", type);
 

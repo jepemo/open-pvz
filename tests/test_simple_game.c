@@ -17,8 +17,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include <stdio.h> 
+
+#include <stdio.h>
 #include "test_utils.h"
 #include "opvz.h"
 
@@ -50,9 +50,14 @@ void simple_game () {
 
   level_init(level);
 
+  int it = 0;
   while(level_all_dead_zombies(level) == false) {
-    level_print_debug(level);
+    printf("it=%d\n", it);
+    //level_print_debug(level);
     level = level_step(level);
+
+    //if(it++ > 20) break;
+    it++;
   }
 
   level_destroy(level);

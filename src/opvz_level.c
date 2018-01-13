@@ -74,7 +74,7 @@ level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos)
   entity->x_pos = xpos;
   entity->y_pos = ypos;
   entity->id = entity_new_id();
-
+  
   list_add_elem(level->entities, entity->id, entity);
 }
 
@@ -89,10 +89,10 @@ List*
 get_entities_by_pos(Level * level, int x, int y)
 {
   List * result = list_create();
-    
+
   if (level->entities == NULL || level->entities->num_elements == 0)
 	return result;
-	
+
   node* ptr = level->entities->first;
   while (ptr != NULL) {
       Entity * entity = ((Entity*) ptr->data);
@@ -101,34 +101,34 @@ get_entities_by_pos(Level * level, int x, int y)
       }
       ptr = ptr->next;
   }
-	
-  return result;	
+
+  return result;
 }
 
-bool    
+bool
 level_all_dead_zombies (Level *level)
 {
-    return false;    
+    return false;
 }
 
 void
 level_print_debug(Level *level)
 {
   node *ptr = NULL;
-  
+
   for(int y=0; y < level->config->n_rows; ++y) {
     for(int x=0; x < level->config->n_cols; ++x) {
       List* entities = get_entities_by_pos(level, x, y);
-      
+
       if (entities->num_elements > 0) {
           ptr = entities->first;
           while (ptr != NULL) {
               Entity * entity = ((Entity*) ptr->data);
               printf("[%d] ", entity->type);
           }
-      }      
+      }
     }
-    
+
     printf("\n");
   }
 }
