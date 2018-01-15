@@ -32,10 +32,10 @@ void level_init (Level *level)
   level_add_entity(level, PLANT_SUNFLOWER, 0, 4);
 
   level_add_entity(level, PLANT_PEASHOOTER, 1, 0);
-  level_add_entity(level, PLANT_PEASHOOTER, 2, 1);
-  level_add_entity(level, PLANT_PEASHOOTER, 3, 2);
-  level_add_entity(level, PLANT_PEASHOOTER, 4, 3);
-  level_add_entity(level, PLANT_PEASHOOTER, 5, 4);
+  level_add_entity(level, PLANT_PEASHOOTER, 1, 1);
+  level_add_entity(level, PLANT_PEASHOOTER, 1, 2);
+  level_add_entity(level, PLANT_PEASHOOTER, 1, 3);
+  level_add_entity(level, PLANT_PEASHOOTER, 1, 4);
 
   // Zombies
   level_add_entity(level, ZOMBIE_REGULAR, 8, 0);
@@ -52,12 +52,12 @@ void simple_game () {
 
   int it = 0;
   while(level_all_dead_zombies(level) == false) {
-    printf("it=%d\n", it);
-    //level_print_debug(level);
+    printf("[%d] Step\n", it);
+    level_print_debug(level);
     level = level_step(level);
 
-    //if(it++ > 20) break;
-    it++;
+    if(it++ > 20) break;
+    //it++;
   }
 
   level_destroy(level);

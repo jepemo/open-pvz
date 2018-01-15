@@ -82,6 +82,18 @@ Level *
 level_step(Level *level)
 {
   /** GAME LOGIC */
+  node* ptr = level->entities->first;
+  while (ptr != NULL) {
+    Entity * entity = ((Entity*) ptr->data);
+
+    
+    if (entity->clazz == ZOMBIE) {
+          entity->x_pos = entity->x_pos - 1;
+    }
+
+    ptr = ptr->next;
+  }
+
   return level;
 }
 
@@ -112,17 +124,19 @@ level_all_dead_zombies (Level *level)
   if (level->entities == NULL || level->entities->num_elements == 0)
     return true;
 
-  bool exists = false;
+  bool all_dead = true;
   node* ptr = level->entities->first;
   while (ptr != NULL) {
       Entity * entity = ((Entity*) ptr->data);
       if (entity->clazz == ZOMBIE) {
-        exists = true;
+        all_dead = false;
         break;
       }
+
+      ptr = ptr->next;
   }
 
-  return exists;
+  return all_dead;
 }
 
 void
@@ -130,19 +144,31 @@ level_print_debug(Level *level)
 {
   node *ptr = NULL;
 
-  for(int y=0; y < level->config->n_rows; ++y) {
-    for(int x=0; x < level->config->n_cols; ++x) {
+  size_t n_rows = level->config->n_rows;
+  size_t n_cols = level->config->n_cols;
+
+  // printf("Board (%ld, %ld)\n", n_rows, n_cols);
+
+  for(int y=0; y < n_rows; ++y) {
+    for(int x=0; x < n_cols; ++x) {
+      // printf("(%d, %d)\n", x, y);
       List* entities = get_entities_by_pos(level, x, y);
 
       if (entities->num_elements > 0) {
           ptr = entities->first;
           while (ptr != NULL) {
               Entity * entity = ((Entity*) ptr->data);
-              printf("[%d] ", entity->type);
+              printf("[%s] ", entity->repr);
+              ptr = ptr->next;
           }
+      }
+      else {
+          printf("[ ] ");
       }
     }
 
     printf("\n");
   }
+
+  getchar();
 }
