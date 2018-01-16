@@ -86,7 +86,7 @@ level_step(Level *level)
   while (ptr != NULL) {
     Entity * entity = ((Entity*) ptr->data);
 
-    
+
     if (entity->clazz == ZOMBIE) {
           entity->x_pos = entity->x_pos - 1;
     }
@@ -156,14 +156,16 @@ level_print_debug(Level *level)
 
       if (entities->num_elements > 0) {
           ptr = entities->first;
+          printf("[");
           while (ptr != NULL) {
               Entity * entity = ((Entity*) ptr->data);
-              printf("[%s] ", entity->repr);
+              printf("%s", entity->repr);
               ptr = ptr->next;
           }
+          printf("] ");
       }
       else {
-          printf("[ ] ");
+          printf("[    ] ");
       }
     }
 
