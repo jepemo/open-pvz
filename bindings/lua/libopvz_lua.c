@@ -24,14 +24,6 @@
 #include "opvz.h"
 
 
-//static int isquare(lua_State *L){              /* Internal name of func */
-//	float rtrn = lua_tonumber(L, -1);      /* Get the single number arg */
-//	printf("Top of square(), nbr=%f\n",rtrn);
-//	lua_pushnumber(L,rtrn*rtrn);           /* Push the return */
-//	return 1;                              /* One return value */
-//}
-
-
 
 /* Register this file's functions with the
  * luaopen_libraryname() function, where libraryname

@@ -99,7 +99,7 @@ get_entities_by_pos(Level * level, int x, int y)
 }
 
 void
-update_zombie_hit(Level *level, size_t x, size_t y, int distance) 
+update_zombie_hit(Level *level, size_t x, size_t y, int distance, int hit) 
 {
     int max_distance = level->config->n_cols;
     if (distance > 0) {
@@ -118,7 +118,7 @@ update_zombie_hit(Level *level, size_t x, size_t y, int distance)
                 Entity * entity = ((Entity*) ptr->data);
 
                 if (entity->clazz == ZOMBIE) {
-                    entity->health--;
+                    entity->health -= hit;
                     update_repr(entity);
 
                     if (entity->health <= 0) {
@@ -146,7 +146,7 @@ plant_attacked(Level *level, Entity * zombie)
         while (ptr != NULL) {
             Entity * entity = ((Entity*) ptr->data);
             if (entity->clazz == PLANT) {
-                entity->health--;
+                entity->health -= zombie->hit;
                 update_repr(entity);
     
                 if (entity->health <= 0) {
@@ -180,7 +180,7 @@ level_step(Level *level)
     else if (entity->clazz == PLANT) {
         // Si la planta puede disparar, quitar una vida del primer zombie del carril
         if (entity->hit > 0) {
-            update_zombie_hit(level, entity->x_pos, entity->y_pos, entity->distance);
+            update_zombie_hit(level, entity->x_pos, entity->y_pos, entity->distance, entity->hit);
         }
     }
 
