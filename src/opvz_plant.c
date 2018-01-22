@@ -35,8 +35,10 @@ plant_new(int type, int health, int armor, int hit)
   entity->armor = armor;
   entity->hit = hit;
   entity->repr = malloc(sizeof(char) * 32);
+  entity->distance = -1;
 
-  sprintf(entity->repr, "P(%d/%d)", type, entity->health);
+  //sprintf(entity->repr, "P(%d/%d)", type, entity->health);
+  update_repr(entity);
 
   return entity;
 }

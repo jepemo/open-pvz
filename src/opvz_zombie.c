@@ -38,7 +38,11 @@ zombie_new(int type, int health, int armor, int hit, int speed)
 
   zombie->speed = speed;
 
-  sprintf(entity->repr, "Z(%d/%d)", type, entity->health);
+  //sprintf(entity->repr, "Z(%d/%d)", type, entity->health);
+  update_repr(entity);
+    
 
   return entity;
 }
+
+

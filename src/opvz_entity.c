@@ -34,3 +34,14 @@ entity_new_id(void)
 
   //return new_id;
 }
+
+void
+update_repr(Entity * entity)
+{
+    char prefix = entity->clazz == ZOMBIE
+        ? 'Z'
+        : 'P';
+
+    int type = entity->type;
+    sprintf(entity->repr, "%c(%d/%d)", prefix, type, entity->health);
+}

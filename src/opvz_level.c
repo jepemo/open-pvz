@@ -78,26 +78,6 @@ level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos)
   list_add_elem(level->entities, entity->id, entity);
 }
 
-Level *
-level_step(Level *level)
-{
-  /** GAME LOGIC */
-  node* ptr = level->entities->first;
-  while (ptr != NULL) {
-    Entity * entity = ((Entity*) ptr->data);
-
-
-    if (entity->clazz == ZOMBIE) {
-          entity->x_pos = entity->x_pos - 1;
-    }
-
-    ptr = ptr->next;
-  }
-
-  return level;
-}
-
-
 List*
 get_entities_by_pos(Level * level, int x, int y)
 {
@@ -117,6 +97,99 @@ get_entities_by_pos(Level * level, int x, int y)
 
   return result;
 }
+
+void
+update_zombie_hit(Level *level, size_t x, size_t y, int distance) 
+{
+    int max_distance = level->config->n_cols;
+    if (distance > 0) {
+        max_distance = x + distance;
+        if (max_distance > level->config->n_cols)
+            max_distance = level->config->n_cols;
+    }
+
+    for (int xini=x; xini < max_distance; ++xini) {
+        int yy = (int)y;
+        List* entities = get_entities_by_pos(level, xini, yy);
+
+        if (entities->num_elements > 0) {
+            node *ptr = entities->first;
+            while (ptr != NULL) {
+                Entity * entity = ((Entity*) ptr->data);
+
+                if (entity->clazz == ZOMBIE) {
+                    entity->health--;
+                    update_repr(entity);
+
+                    if (entity->health <= 0) {
+                        list_rem_elem(level->entities, entity->id);
+                    }
+
+                    break;
+                }                 
+
+                ptr = ptr->next;
+            }
+        }
+    }
+}
+
+int
+plant_attacked(Level *level, Entity * zombie)
+{
+    int attacked = 0;
+
+    // Si el zombie esta en la misma casilla que una planta, consumir vida planta  
+    List* entities = get_entities_by_pos(level, zombie->x_pos, zombie->y_pos);
+    if (entities->num_elements > 0) {
+        node *ptr = entities->first;
+        while (ptr != NULL) {
+            Entity * entity = ((Entity*) ptr->data);
+            if (entity->clazz == PLANT) {
+                entity->health--;
+                update_repr(entity);
+    
+                if (entity->health <= 0) {
+                    list_rem_elem(level->entities, entity->id);
+                }
+
+                attacked = 1;
+                break;
+            }
+            ptr = ptr->next;
+        }
+    }
+
+    return attacked;
+}
+
+Level *
+level_step(Level *level)
+{
+  /** GAME LOGIC */
+  node* ptr = level->entities->first;
+  while (ptr != NULL) {
+    Entity * entity = ((Entity*) ptr->data);
+
+
+    if (entity->clazz == ZOMBIE) {
+        if (plant_attacked(level, entity) == 0) {
+            entity->x_pos = entity->x_pos - 1;
+        }      
+    }
+    else if (entity->clazz == PLANT) {
+        // Si la planta puede disparar, quitar una vida del primer zombie del carril
+        if (entity->hit > 0) {
+            update_zombie_hit(level, entity->x_pos, entity->y_pos, entity->distance);
+        }
+    }
+
+    ptr = ptr->next;
+  }
+
+  return level;
+}
+
 
 bool
 level_all_dead_zombies (Level *level)

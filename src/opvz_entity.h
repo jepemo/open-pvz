@@ -49,10 +49,13 @@ typedef struct {
   int armor;
   /* hit */
   int hit;
+  /* distance */
+  int distance;
 
 } Entity;
 
 
-long entity_new_id(void);
+long entity_new_id (void);
+void update_repr   (Entity * entity);
 
 #endif /* __OPVZ_ENTITY_H__ */
