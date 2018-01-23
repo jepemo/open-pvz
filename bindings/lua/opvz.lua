@@ -6,3 +6,15 @@ sleep(1)
 
 --require("opvzlib")
 --print(square(1.414213598))
+
+Level = {
+}
+
+function Level:step()
+end
+
+function Level:addPlant(p)
+end
+
+function Level:addZombie(z)
+end
