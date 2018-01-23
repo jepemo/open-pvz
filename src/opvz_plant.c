@@ -22,7 +22,7 @@
 #include "opvz_plant.h"
 
 Entity *
-plant_new(int type, int health, int armor, int hit)
+plant_new(int type, int health, int hit)
 {
   Entity * entity = malloc(sizeof(Entity));
   Plant* plant = malloc(sizeof(Plant));
@@ -32,7 +32,6 @@ plant_new(int type, int health, int armor, int hit)
   entity->data = plant;
 
   entity->health = health;
-  entity->armor = armor;
   entity->hit = hit;
   entity->repr = malloc(sizeof(char) * 32);
   entity->distance = -1;

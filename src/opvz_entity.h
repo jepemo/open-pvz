@@ -45,12 +45,12 @@ typedef struct {
   size_t y_pos;
   /* Healh */
   int health;
-  /* Armor */
-  int armor;
   /* hit */
   int hit;
   /* distance */
   int distance;
+  /* wait */
+  int wait;
 
 } Entity;
 

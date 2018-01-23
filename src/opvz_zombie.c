@@ -22,7 +22,7 @@
 #include "opvz_zombie.h"
 
 Entity*
-zombie_new(int type, int health, int armor, int hit, int speed)
+zombie_new(int type, int health, int hit, int speed)
 {
   Entity* entity = malloc(sizeof(Entity));
   Zombie* zombie = malloc(sizeof(Zombie));
@@ -32,7 +32,6 @@ zombie_new(int type, int health, int armor, int hit, int speed)
   entity->data = zombie;
 
   entity->health = health;
-  entity->armor = armor;
   entity->hit = hit;
   entity->repr = malloc(sizeof(char) * 32);
 
