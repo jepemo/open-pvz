@@ -21,33 +21,9 @@
 #include <lua.h>
 #include <lauxlib.h>
 #include <lualib.h>
+#include "libopvz_lua.h"
 #include "opvz.h"
 
-
-
-/* Register this file's functions with the
- * luaopen_libraryname() function, where libraryname
- * is the name of the compiled .so output. In other words
- * it's the filename (but not extension) after the -o
- * in the cc command.
- *
- * So for instance, if your cc command has -o power.so then
- * this function would be called luaopen_power().
- *
- * This function should contain lua_register() commands for
- * each function you want available from Lua.
- *
-*/
-
-//int luaopen_opvzlib(lua_State *L){
-//	lua_register(
-//			L,               /* Lua state variable */
-//			"square",        /* func name as known in Lua */
-//			isquare          /* func name in this file */
-//			);
-//	lua_register(L,"cube",icube);
-//	return 0;
-//}
 
 static int sleep_c(lua_State *L){
 	long secs = lua_tointeger(L, -1);
@@ -73,8 +49,13 @@ static int ihello(lua_State *L){
 */
 
 static int icreate_new_level_default(lua_State *L) {
-  // lua_push
-  return 1;
+    Level * new_level = level_new_default();
+    
+    global_levels[current_level_pos] = new_level;
+
+    current_level_pos++;
+
+    return 1;
 }
 
 
