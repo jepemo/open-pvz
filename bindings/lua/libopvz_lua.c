@@ -38,31 +38,40 @@ static int icube(lua_State *L){
 	return 1;
 }
 
-/*
-static int ihello(lua_State *L){
-  // printf("ihello!");
-	float rtrn = lua_tonumber(L, -1);
-	lua_pushnumber(L,hello(rtrn));
-  //lua_pushnumber(L,rtrn*rtrn*rtrn);
+
+static int icreate_new_level(lua_State *L)
+{
+	// (int rows, int cols, int depth)
+	int rows = lua_tonumber(L, -3);
+	int cols = lua_tonumber(L, -2);
+	// int deph = lua_tonumber(L, -1);
+	int depth = 0;
+
+	LevelConfig * config = level_config_new(rows, cols, depth);
+	Level * new_level = level_new(config);
+
+	global_levels[current_level_pos] = new_level;
+
+	lua_pushnumber(L, current_level_pos);
+
+	current_level_pos++;
+
 	return 1;
 }
-*/
 
-static int icreate_new_level_default(lua_State *L) {
-    Level * new_level = level_new_default();
-    
-    global_levels[current_level_pos] = new_level;
+static int ilevel_step(lua_State *L)
+{
+	int level_ident = lua_tonumber(L, -1);
 
-    current_level_pos++;
+	Level * level = global_levels[level_ident];
+	level_step(level);
 
-    return 1;
+	return 0;
 }
-
 
 int luaopen_libopvz_lua(lua_State *L)
 {
-	// lua_register(L, "hello", ihello);
-  lua_register(L, "cube",  icube);
-  lua_register(L, "sleep", sleep_c);
+	lua_register(L, "create_new_level", icreate_new_level);
+	lua_register(L, "level_step", ilevel_step);
 	return 0;
 }
