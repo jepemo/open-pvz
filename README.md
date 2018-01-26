@@ -1,26 +1,30 @@
 # open-pvz
 Tower Defense Game Engine inspired by "Plantz Vz Zombiez", implemented in C with differents bindings for other languages.
 
-## Use:
-TODO
+- [Getting Started](#getting-started)
+  - [Installation] (#installation)
+- [Bindings](#bindings)
 
-## Installation
-### Linux (Ubuntu)
+## Getting Started
+
+### Installation
+
+#### Linux (Ubuntu)
 
 Install compiler and lua headers
 
 ```bash
 apt-get install gcc
 ```
-### MacOS
-Install [brew](https://brew.sh/) 
+#### Mac OS
+Install [brew](https://brew.sh/)
 
-Install lua: 
+Install lua:
 
 ```bash
 brew install lua
 ```
 
-## Game Languages:
- * Lua
+## Bindings:
+ * Lua ([Documentation](doc/lua.md))
  * Java (Todo)
