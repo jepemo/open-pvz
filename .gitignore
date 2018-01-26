@@ -33,3 +33,4 @@
 *.dSYM/
 *.su
 lib
+demo/love2d/opvz.lua
