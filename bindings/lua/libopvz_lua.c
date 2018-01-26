@@ -24,22 +24,22 @@
 #include "libopvz_lua.h"
 #include "opvz.h"
 
-
+/*
 static int sleep_c(lua_State *L){
 	long secs = lua_tointeger(L, -1);
 	sleep(secs);
-	return 0;                  /* No items returned */
+	return 0;
 }
 
 static int icube(lua_State *L){
 	float rtrn = lua_tonumber(L, -1);
-	// printf("Top of cube(), number=%f\n",rtrn);
 	lua_pushnumber(L,rtrn*rtrn*rtrn);
 	return 1;
 }
+*/
 
 
-static int icreate_new_level(lua_State *L)
+static int ilevel_new(lua_State *L)
 {
 	// (int rows, int cols, int depth)
 	int rows = lua_tonumber(L, -3);
@@ -59,6 +59,16 @@ static int icreate_new_level(lua_State *L)
 	return 1;
 }
 
+static int ilevel_destroy(lua_State *L)
+{
+	int level_ident = lua_tonumber(L, -1);
+	Level * level = global_levels[level_ident];
+	level_destroy(level);
+	global_levels[level_ident] = NULL;
+
+	return 0;
+}
+
 static int ilevel_step(lua_State *L)
 {
 	int level_ident = lua_tonumber(L, -1);
@@ -69,9 +79,47 @@ static int ilevel_step(lua_State *L)
 	return 0;
 }
 
+static int ilevel_add_plant(lua_State *L)
+{
+	int y      = lua_tonumber(L, -1);
+	int x      = lua_tonumber(L, -2);
+	int hit    = lua_tonumber(L, -3);
+	int health = lua_tonumber(L, -4);
+	int type   = lua_tonumber(L, -5);
+	int lvl_id = lua_tonumber(L, -6);
+
+	Entity * new_plant = plant_new(type, health, hit);
+	Level  * level     = global_levels[lvl_id];
+
+	level_add_entity(level, new_plant, x, y);
+
+	return 0;
+}
+
+static int ilevel_add_zombie(lua_State *L)
+{
+	int y      = lua_tonumber(L, -1);
+	int x      = lua_tonumber(L, -2);
+	int speed  = lua_tonumber(L, -3);
+	int hit    = lua_tonumber(L, -4);
+	int health = lua_tonumber(L, -5);
+	int type   = lua_tonumber(L, -6);
+	int lvl_id = lua_tonumber(L, -7);
+
+	Entity * new_z = zombie_new(type, health, hit, speed);
+	Level  * level     = global_levels[lvl_id];
+
+	level_add_entity(level, new_z, x, y);
+
+	return 0;
+}
+
 int luaopen_libopvz_lua(lua_State *L)
 {
-	lua_register(L, "create_new_level", icreate_new_level);
+	lua_register(L, "level_new", ilevel_new);
+	lua_register(L, "level_destroy", ilevel_destroy);
 	lua_register(L, "level_step", ilevel_step);
+	lua_register(L, "level_add_plant", ilevel_add_plant);
+	lua_register(L, "level_add_zombie", ilevel_add_zombie);
 	return 0;
 }

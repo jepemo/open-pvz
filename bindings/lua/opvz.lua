@@ -19,7 +19,16 @@
 --
 require("libopvz_lua")
 
-local function Level(args)
+-- ZOMBIES
+ZOMBIE_REGULAR = { type = 0, health = 10, hit = 2, speed = 2}
+
+-- PLANTS
+PLANT_SUNFLOWER   = { type = 0, health = 5,   hit = 0}
+PLANT_PEASHOOTER  = { type = 1, health = 5,   hit =1}
+PLANT_CHERRYBOMB  = { type = 2, health = 999, hit =60}
+PLANT_WALLNUT     = { type = 3, health = 15,  hit =0}
+
+function Level(args)
   -- Default arguments
   args = args or {}
   setmetatable(args, {__index={ rows = 5, cols = 9}})
@@ -28,7 +37,7 @@ local function Level(args)
     args[2] or args.cols
 
   local self = {
-    ident = create_new_level(rows, cols),
+    ident = level_new(rows, cols),
     rows = rows,
     cols = cols
   }
@@ -37,16 +46,38 @@ local function Level(args)
     level_step(self.ident)
   end
 
-  function self.add_plant(plant)
+  function self.add_plant(plant, x, y)
+    level_add_plant(
+      self.ident,
+      plant.type,
+      plant.health,
+      plant.hit,
+      x,
+      y)
   end
 
-  function self.add_zombie(zombie)
+  function self.add_zombie(zombie, x, y)
+    level_add_zombie(
+      self.ident,
+      zombie.type,
+      zombie.health,
+      zombie.hit,
+      zombie.speed,
+      x,
+      y
+    )
+  end
+
+  function self.destroy()
+    level_destroy(self.ident)
   end
 
   return self
 end
 
-l1 = Level{}
-print(l1.ident)
-print(l1.rows)
-print(l1.cols)
+--[[
+l = Level{}
+l:add_plant(PLANT_SUNFLOWER, 0, 0)
+l:add_zombie(ZOMBIE_REGULAR, 1, 1)
+l:destroy()
+]]--
