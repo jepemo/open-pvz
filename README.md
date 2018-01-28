@@ -67,8 +67,10 @@ int main (int argc, char **argv)
 
   level_destroy(level);
 
-  if      (finished == -1) print("Zombies WON!\n");
-  else if (finished == 1) printf("Plants WON!\n")
+  if (finished == -1)
+    printf("Zombies WON!\n");
+  else if (finished == 1)  
+    printf("Plants WON!\n")
 
   return 0;
 }
