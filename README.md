@@ -59,12 +59,16 @@ int main (int argc, char **argv)
 
   level_init(level);
 
-  while(level_all_dead_zombies(level) == false) {
+  int finished = 0;
+  while((finished = level_finished(level)) == 0) {
     level_print_debug(level);
     level = level_step(level);
   }
 
   level_destroy(level);
+
+  if      (finished == -1) print("Zombies WON!\n");
+  else if (finished == 1) printf("Plants WON!\n")
 
   return 0;
 }

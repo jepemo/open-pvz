@@ -99,7 +99,7 @@ get_entities_by_pos(Level * level, int x, int y)
 }
 
 void
-update_zombie_hit(Level *level, size_t x, size_t y, int distance, int hit) 
+update_zombie_hit(Level *level, size_t x, size_t y, int distance, int hit)
 {
     int max_distance = level->config->n_cols;
     if (distance > 0) {
@@ -126,7 +126,7 @@ update_zombie_hit(Level *level, size_t x, size_t y, int distance, int hit)
                     }
 
                     break;
-                }                 
+                }
 
                 ptr = ptr->next;
             }
@@ -139,7 +139,7 @@ plant_attacked(Level *level, Entity * zombie)
 {
     int attacked = 0;
 
-    // Si el zombie esta en la misma casilla que una planta, consumir vida planta  
+    // Si el zombie esta en la misma casilla que una planta, consumir vida planta
     List* entities = get_entities_by_pos(level, zombie->x_pos, zombie->y_pos);
     if (entities->num_elements > 0) {
         node *ptr = entities->first;
@@ -148,7 +148,7 @@ plant_attacked(Level *level, Entity * zombie)
             if (entity->clazz == PLANT) {
                 entity->health -= zombie->hit;
                 update_repr(entity);
-    
+
                 if (entity->health <= 0) {
                     list_rem_elem(level->entities, entity->id);
                 }
@@ -175,7 +175,7 @@ level_step(Level *level)
     if (entity->clazz == ZOMBIE) {
         if (plant_attacked(level, entity) == 0) {
             entity->x_pos = entity->x_pos - 1;
-        }      
+        }
     }
     else if (entity->clazz == PLANT) {
         // Si la planta puede disparar, quitar una vida del primer zombie del carril
@@ -210,6 +210,20 @@ level_all_dead_zombies (Level *level)
   }
 
   return all_dead;
+}
+
+int
+level_finished (Level *level)
+{
+  int finished = 0;
+
+  if (level_all_dead_zombies(level)) {
+    finished = 1;
+  }
+
+  // Falta el caso de cuando los zombies ganan
+
+  return finished;
 }
 
 void

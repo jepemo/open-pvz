@@ -58,6 +58,6 @@ void    level_print_debug(Level *level);
 void    level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos);
 
 Level * level_step       (Level *level);
-bool    level_all_dead_zombies (Level *level);
+int     level_finished   (Level *level);
 
 #endif /* __OPVZ_LEVEL_H__ */

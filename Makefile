@@ -44,4 +44,4 @@ $(OUT_LIB): $(OBJECTS)
 test: clean all $(BIN_TESTS)
 	@echo "All TESTS executed."
 clean:
-	rm -f $(IDIR)/*.o *~ core $(IDIR)/$(OUT_LIB) bindings/lua/*.so bindings/lua/*.a tests/*.bin demo/love2d/*.so demo/love2d/*.a demo/love2d/opvz.lua
+	rm -f $(IDIR)/*.o *~ core $(IDIR)/$(OUT_LIB) bindings/lua/*.so bindings/lua/*.a tests/*.bin demo/love2d/*.so demo/love2d/*.a heodemo/love2d/opvz.lua

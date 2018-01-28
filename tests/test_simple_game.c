@@ -51,7 +51,8 @@ void simple_game () {
   level_init(level);
 
   int it = 0;
-  while(level_all_dead_zombies(level) == false) {
+  int finished = 0;
+  while((finished = level_finished(level)) == 0) {
     printf("[%d] Step\n", it);
     level_print_debug(level);
     level = level_step(level);
