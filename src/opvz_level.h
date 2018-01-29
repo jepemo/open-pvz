@@ -48,6 +48,16 @@ typedef struct {
   long last_id;
 } Level;
 
+typedef struct {
+  /* True if level game have finished */
+  bool finished;
+  /* winned (-1 = zombies, 1 = plants) */
+  int who_won;
+  /* Entities dead */
+  Entity * entities_dead;
+  int num_entities_dead;
+} LevelStatus;
+
 LevelConfig * level_config_new(size_t rows, size_t cols, short depth);
 
 Level * level_new        (LevelConfig *config);
@@ -57,7 +67,6 @@ void    level_print_debug(Level *level);
 
 void    level_add_entity (Level *level, Entity *entity, size_t xpos, size_t ypos);
 
-Level * level_step       (Level *level);
-int     level_finished   (Level *level);
+LevelStatus * level_step  (Level *level);
 
 #endif /* __OPVZ_LEVEL_H__ */

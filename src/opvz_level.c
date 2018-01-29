@@ -163,33 +163,17 @@ plant_attacked(Level *level, Entity * zombie)
     return attacked;
 }
 
-Level *
-level_step(Level *level)
+LevelStatus *
+level_status_init()
 {
-  /** GAME LOGIC */
-  node* ptr = level->entities->first;
-  while (ptr != NULL) {
-    Entity * entity = ((Entity*) ptr->data);
+  LevelStatus * status = (LevelStatus *) malloc(1);
+  status->finished = false;
+  status->who_won = 0;
+  status->num_entities_dead = 0;
+  status->entities_dead = NULL;
 
-
-    if (entity->clazz == ZOMBIE) {
-        if (plant_attacked(level, entity) == 0) {
-            entity->x_pos = entity->x_pos - 1;
-        }
-    }
-    else if (entity->clazz == PLANT) {
-        // Si la planta puede disparar, quitar una vida del primer zombie del carril
-        if (entity->hit > 0) {
-            update_zombie_hit(level, entity->x_pos, entity->y_pos, entity->distance, entity->hit);
-        }
-    }
-
-    ptr = ptr->next;
-  }
-
-  return level;
+  return status;
 }
-
 
 bool
 level_all_dead_zombies (Level *level)
@@ -212,18 +196,38 @@ level_all_dead_zombies (Level *level)
   return all_dead;
 }
 
-int
-level_finished (Level *level)
+LevelStatus *
+level_step(Level *level)
 {
-  int finished = 0;
+  LevelStatus * status = level_status_init();
 
-  if (level_all_dead_zombies(level)) {
-    finished = 1;
+  /** GAME LOGIC */
+  node* ptr = level->entities->first;
+  while (ptr != NULL) {
+    Entity * entity = ((Entity*) ptr->data);
+
+
+    if (entity->clazz == ZOMBIE) {
+        if (plant_attacked(level, entity) == 0) {
+            entity->x_pos = entity->x_pos - 1;
+        }
+    }
+    else if (entity->clazz == PLANT) {
+        // Si la planta puede disparar, quitar una vida del primer zombie del carril
+        if (entity->hit > 0) {
+            update_zombie_hit(level, entity->x_pos, entity->y_pos, entity->distance, entity->hit);
+        }
+    }
+
+    ptr = ptr->next;
   }
 
-  // Falta el caso de cuando los zombies ganan
+  if (level_all_dead_zombies(level)) {
+    status->finished = true;
+    status->who_won = -1;
+  }
 
-  return finished;
+  return status;
 }
 
 void

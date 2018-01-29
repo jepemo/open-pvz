@@ -1,4 +1,4 @@
-# open-pvz
+do a# open-pvz
 Tower Defense Game Engine inspired by "Plantz Vz Zombiez", implemented in C with differents bindings for other languages.
 
 - [Getting Started](#getting-started)
@@ -59,18 +59,15 @@ int main (int argc, char **argv)
 
   level_init(level);
 
-  int finished = 0;
-  while((finished = level_finished(level)) == 0) {
+  bool finished = false;
+  while(!finished) {
     level_print_debug(level);
-    level = level_step(level);
+
+    LevelStatus * status = level_step(level);
+    finished = status->finished;
   }
 
   level_destroy(level);
-
-  if (finished == -1)
-    printf("Zombies WON!\n");
-  else if (finished == 1)  
-    printf("Plants WON!\n")
 
   return 0;
 }
