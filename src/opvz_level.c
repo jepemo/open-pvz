@@ -210,6 +210,10 @@ level_step(Level *level)
     if (entity->clazz == ZOMBIE) {
         if (plant_attacked(level, entity) == 0) {
             entity->x_pos = entity->x_pos - 1;
+            if (entity->x_pos == 0) {
+              status->finished = true;
+              status->who_won = -1;
+            }
         }
     }
     else if (entity->clazz == PLANT) {
@@ -224,7 +228,7 @@ level_step(Level *level)
 
   if (level_all_dead_zombies(level)) {
     status->finished = true;
-    status->who_won = -1;
+    status->who_won = 1;
   }
 
   return status;
