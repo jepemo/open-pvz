@@ -34,3 +34,4 @@
 *.su
 lib
 demo/love2d/opvz.lua
+bindings/lua/love2d/opvz.lua
