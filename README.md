@@ -1,4 +1,4 @@
-do a# open-pvz
+# open-pvz
 Tower Defense Game Engine inspired by "Plantz Vz Zombiez", implemented in C with differents bindings for other languages.
 
 - [Getting Started](#getting-started)
