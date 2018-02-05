@@ -57,7 +57,6 @@ list_add_elem(List* list, int ident, void *elem)
 	list->num_elements++;
 }
 
-// Seeing: https://codereview.stackexchange.com/questions/30536/simple-linked-list-implementation
 void  
 list_rem_elem(List* list, int ident)
 {

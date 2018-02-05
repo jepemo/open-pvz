@@ -18,16 +18,26 @@ echo -ne "]]\n" >> $OUT_FILE
 
 cat >> $OUT_FILE <<- EOF
 
-level_step = ffi.C.level_step
-level_add_plant = ffi.C.level_add_plant
-level_add_zombie = ffi.C.level_add_zombie
-level_destroy = ffi.C.level_destroy
+local libopvz = ffi.load("libopvz.so")
+
+local level_step = libopvz.level_step
+local level_add_plant = libopvz.level_add_plant
+local level_add_zombie = libopvz.level_add_zombie
+local level_destroy = libopvz.level_destroy
 
 EOF
 
 cat bindings/lua/opvz.lua >> $OUT_FILE
 
 sed -i '/require("libopvz_lua")/d' $OUT_FILE
+sed 's|/\*|\n&|g;s|*/|&\n|g' $OUT_FILE | sed '/\/\*/,/*\//d' > ${OUT_FILE}_2
+mv ${OUT_FILE}_2 $OUT_FILE
+
+sed -i '/^#include.*/d' $OUT_FILE
+sed -i '/#ifndef __OPVZ_.*/d' $OUT_FILE
+sed -i '/#define __OPVZ_.*/d' $OUT_FILE
+sed -i '/#endif.*/d' $OUT_FILE
+sed -i '/^\s*$/d' $OUT_FILE
 
 
 
