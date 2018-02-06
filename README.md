@@ -27,6 +27,8 @@ brew install lua
 
 ## Example
 
+### C Simple level example
+
 ```c
 #include "opvz.h"
 
@@ -72,6 +74,8 @@ int main (int argc, char **argv)
   return 0;
 }
 ```
+
+### Output:
 
 ![C Program animation](doc/c_anim.gif)
 
