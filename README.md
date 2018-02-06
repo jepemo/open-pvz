@@ -73,6 +73,9 @@ int main (int argc, char **argv)
 }
 ```
 
+![C Program animation](doc/c_anim.gif)
+
+
 ## Bindings:
  * Lua ([Documentation](doc/lua.md))
  * Java (Todo)
