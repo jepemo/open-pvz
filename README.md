@@ -7,22 +7,34 @@ Tower Defense Game Engine inspired by "Plantz Vz Zombiez", implemented in C with
 
 ## Getting Started
 
-### Install
+### Build & Install
 
-#### Linux (Ubuntu)
+In **Linux** (Ubuntu)
 
 Install compiler and lua headers
 
 ```bash
 apt-get install gcc
 ```
-#### Mac OS
+In **Mac OS**
 Install [brew](https://brew.sh/)
 
 Install lua:
 
 ```bash
 brew install lua
+
+```
+
+**Get** the sourcecode:
+```
+git clone https://github.com/jepemo/open-pvz.git
+```
+
+**Build** library, executing the make command:
+```
+cd open-pvz
+make
 ```
 
 ## Example
